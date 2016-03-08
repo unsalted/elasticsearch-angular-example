@@ -43,8 +43,15 @@
     // into a service so that it can be required by other parts of the application
     ExampleApp.service('client', function (esFactory) {
       return esFactory({
-        host: 'localhost:9200',
-        apiVersion: '1.2',
+        host: {
+          host: 'localhost', // default, can be excluded
+          port: 9200, // default, can be excluded
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+        },
+        apiVersion: '2.2',
         log: 'trace'
       });
     });
